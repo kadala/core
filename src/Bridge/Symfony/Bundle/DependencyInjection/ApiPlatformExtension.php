@@ -12,6 +12,7 @@
 namespace ApiPlatform\Core\Bridge\Symfony\Bundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Resource\DirectoryResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -131,6 +132,7 @@ final class ApiPlatformExtension extends Extension implements PrependExtensionIn
 
             if (file_exists($entityDirectory)) {
                 $paths[] = $entityDirectory;
+                $container->addResource(new DirectoryResource($entityDirectory, '/\.php$/'));
             }
         }
 
